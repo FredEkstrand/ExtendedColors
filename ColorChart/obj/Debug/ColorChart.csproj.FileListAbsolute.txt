@@ -1,0 +1,7 @@
+C:\SoftwareProjects\ColorChart\ColorChart\bin\Debug\ExtendedColors.dll
+C:\SoftwareProjects\ColorChart\ColorChart\bin\Debug\ExtendedColors.pdb
+C:\SoftwareProjects\ColorChart\ColorChart\bin\Debug\System.Net.Http.dll
+C:\SoftwareProjects\ColorChart\ColorChart\bin\Debug\System.Net.Http.xml
+C:\SoftwareProjects\ColorChart\ColorChart\obj\Debug\ExtendedColors.dll
+C:\SoftwareProjects\ColorChart\ColorChart\obj\Debug\ExtendedColors.pdb
+C:\SoftwareProjects\ColorChart\ColorChart\obj\Debug\ColorChart.csprojResolveAssemblyReference.cache
