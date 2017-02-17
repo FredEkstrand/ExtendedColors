@@ -1,0 +1,8 @@
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\bin\Release\ExtendedColors.XML
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\bin\Release\ExtendedColors.dll
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\bin\Release\ExtendedColors.pdb
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\bin\Release\System.Net.Http.dll
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\bin\Release\System.Net.Http.xml
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\obj\Release\ExtendedColors.dll
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\obj\Release\ExtendedColors.pdb
+C:\Users\frede\Documents\GitHub\ColorChart\ColorChart\obj\Release\ColorChart.csprojResolveAssemblyReference.cache

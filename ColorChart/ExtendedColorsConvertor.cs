@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ekstrand.Drawing
 {
+    /// <summary>
+    /// Converts ExtendedColors from one data type to another. Access this class through the TypeDescriptor.
+    /// </summary>
     public class ExtendedColorsConverter : TypeConverter
     {
         private static string ColorConstantsLock = "colorConstants";
@@ -21,19 +21,14 @@ namespace Ekstrand.Drawing
         private static string ValuesLock = "values";
         private static StandardValuesCollection values;
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.ColorConverter"]/*' />
-        /// <devdoc>
-        ///    <para>[To be supplied.]</para>
-        /// </devdoc>
+        /// <summary>
+        /// Initializes a new instance of the ColorConverter class.
+        /// </summary>
         public ExtendedColorsConverter()
         {
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.Colors"]/*' />
-        /// <devdoc>
-        ///      Hashtable of color / value pairs (color name is key)
-        ///      for standard colors.
-        /// </devdoc>
+        
         private static Hashtable Colors
         {
             get
@@ -55,12 +50,12 @@ namespace Ekstrand.Drawing
             }
         }
 
-
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.CanConvertFrom"]/*' />
-        /// <devdoc>
-        ///      Determines if this converter can convert an object in the given source
-        ///      type to the native type of the converter.
-        /// </devdoc>
+        /// <summary>
+        /// Determines if this converter can convert an object in the given source type to the native type of the converter.
+        /// </summary>
+        /// <param name="context">An ITypeDescriptorContext that provides a format context. You can use this object to get additional information about the environment from which this converter is being invoked. </param>
+        /// <param name="sourceType">The type from which you want to convert. </param>
+        /// <returns>true if this object can perform the conversion; otherwise, false.</returns>
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
             if (sourceType == typeof(string))
@@ -70,11 +65,12 @@ namespace Ekstrand.Drawing
             return base.CanConvertFrom(context, sourceType);
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.CanConvertTo"]/*' />
-        /// <devdoc>
-        ///    <para>Gets a value indicating whether this converter can
-        ///       convert an object to the given destination type using the context.</para>
-        /// </devdoc>
+        /// <summary>
+        /// Returns whether this converter can convert the object to the specified type.
+        /// </summary>
+        /// <param name="context">An ITypeDescriptorContext that provides a format context. </param>
+        /// <param name="destinationType">A Type that represents the type to which you want to convert. </param>
+        /// <returns>true if this converter can perform the operation; otherwise, false.</returns>
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
             if (destinationType == typeof(InstanceDescriptor))
@@ -97,10 +93,7 @@ namespace Ekstrand.Drawing
             return color;
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.ConvertFrom"]/*' />
-        /// <devdoc>
-        ///      Converts the given object to the converter's native type.
-        /// </devdoc>        
+        ///  
         [SuppressMessage("Microsoft.Performance", "CA1808:AvoidCallsThatBoxValueTypes")]
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
@@ -220,14 +213,14 @@ namespace Ekstrand.Drawing
             return base.ConvertFrom(context, culture, value);
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.ConvertTo"]/*' />
-        /// <devdoc>
-        ///      Converts the given object to another type.  The most common types to convert
-        ///      are to and from a string object.  The default implementation will make a call
-        ///      to ToString on the object if the object is valid and if the destination
-        ///      type is string.  If this cannot convert to the destination type, this will
-        ///      throw a NotSupportedException.
-        /// </devdoc>
+        /// <summary>
+        /// Converts the specified object to another type.
+        /// </summary>
+        /// <param name="context">A formatter context. Use this object to extract additional information about the environment from which this converter is being invoked. Always check whether this value is null. Also, properties on the context object may return null. </param>
+        /// <param name="culture">A CultureInfo that specifies the culture to represent the color. </param>
+        /// <param name="value">The object to convert. </param>
+        /// <param name="destinationType">The type to convert the object to. </param>
+        /// <returns>An Object representing the converted value.</returns>
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == null)
@@ -337,11 +330,7 @@ namespace Ekstrand.Drawing
             return base.ConvertTo(context, culture, value, destinationType);
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.FillConstants"]/*' />
-        /// <devdoc>
-        ///      Fills the given hashtable with field name / value pairs.  It walks all public static
-        ///      properties of enumType that have a property type of ExtendedColors.
-        /// </devdoc>
+        
         private static void FillConstants(Hashtable hash, Type enumType)
         {
             MethodAttributes attrs = MethodAttributes.Public | MethodAttributes.Static;
@@ -362,13 +351,11 @@ namespace Ekstrand.Drawing
             }
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.GetStandardValues"]/*' />
-        /// <devdoc>
-        ///      Retrieves a collection containing a set of standard values
-        ///      for the data type this validator is designed for.  This
-        ///      will return null if the data type does not support a
-        ///      standard set of values.
-        /// </devdoc>
+        /// <summary>
+        /// Retrieves a collection containing a set of standard values for the data type for which this validator is designed. This will return null if the data type does not support a standard set of values.
+        /// </summary>
+        /// <param name="context">A formatter context. Use this object to extract additional information about the environment from which this converter is being invoked. Always check whether this value is null. Also, properties on the context object may return null. </param>
+        /// <returns>A collection containing null or a standard set of valid values. The default implementation always returns null.</returns>
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             if (values == null)
@@ -414,21 +401,17 @@ namespace Ekstrand.Drawing
             return values;
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.GetStandardValuesSupported"]/*' />
-        /// <devdoc>
-        ///      Determines if this object supports a standard set of values
-        ///      that can be picked from a list.
-        /// </devdoc>
+        /// <summary>
+        /// Determines if this object supports a standard set of values that can be chosen from a list.
+        /// </summary>
+        /// <param name="context">A TypeDescriptor through which additional context can be provided. </param>
+        /// <returns>true if GetStandardValues must be called to find a common set of values the object supports; otherwise, false.</returns>
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
             return true;
         }
 
-        /// <include file='doc\ColorConverter.uex' path='docs/doc[@for="ColorConverter.ColorComparer"]/*' />
-        /// <devdoc>
-        ///      IComparer for color values.  This takes color values but compares their
-        ///      names.
-        /// </devdoc>
+       
         private class ColorComparer : IComparer
         {
 

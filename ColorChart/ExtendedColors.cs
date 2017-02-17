@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Ekstrand.Drawing
 {
+    /// <summary>
+    /// Extended colors structure
+    /// </summary>
     [Serializable]
     [
     TypeConverter(typeof(ExtendedColorsConverter)),
@@ -20,9 +23,9 @@ namespace Ekstrand.Drawing
     ]
     public partial struct ExtendedColors
     {
-        /**
-   * Shift count and bit mask for A, R, G, B components in ARGB mode!
-   */
+       /*
+       * Shift count and bit mask for A, R, G, B components in ARGB mode!
+       */
         private const int ARGBAlphaShift = 24;
         private const int ARGBRedShift = 16;
         private const int ARGBGreenShift = 8;
@@ -37,16 +40,28 @@ namespace Ekstrand.Drawing
         private static short StateNameValid = 0x0008;
         private static long NotDefinedValue = 0;
 
+        /// <summary>
+        /// Implicit operation from Color structure to ExtendedColors structure.
+        /// </summary>
+        /// <param name="c">Color structure</param>
         public static implicit operator ExtendedColors(Color c)
         {
             return ExtendedColors.FromArgb(c.ToArgb());
         }
 
+        /// <summary>
+        /// Implicit operation from ExtendedColors structure to Color structure.
+        /// </summary>
+        /// <param name="c">ExtendedColors structure</param>
         public static implicit operator Color(ExtendedColors c)
         {
             return Color.FromArgb(c.ToArgb());
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="knownColor">Enumeration element of type KnownExtendedColors</param>
         internal ExtendedColors(KnownExtendedColors knownColor)
         {
             m_Value = 0;
@@ -55,6 +70,13 @@ namespace Ekstrand.Drawing
             this.m_KnownColor = unchecked((short)knownColor);
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="value">32-bit ARGB value</param>
+        /// <param name="state">ExtendedColors state value.</param>
+        /// <param name="name">ExtendedColors name value</param>
+        /// <param name="knownColor">Enumeration element of type KnownExtendedColors</param>
         private ExtendedColors(long value, short state, string name, KnownExtendedColors knownColor)
         {
             this.m_Value = value;
@@ -63,6 +85,9 @@ namespace Ekstrand.Drawing
             this.m_KnownColor = unchecked((short)knownColor);
         }
 
+        /// <summary>
+        /// Specifies whether this Color structure is uninitialized.
+        /// </summary>
         public bool IsEmpty
         {
             get
@@ -71,6 +96,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this Color structure is a named color or a member of the KnownColor enumeration.
+        /// </summary>
         public bool IsNamedColor
         {
             get
@@ -79,8 +107,9 @@ namespace Ekstrand.Drawing
             }
         }
 
-
-
+        /// <summary>
+        /// Gets a value indicating whether this Color structure is a predefined color. Predefined colors are represented by the elements of the KnownColor enumeration.
+        /// </summary>
         public bool IsKnownColor
         {
             get
@@ -89,6 +118,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Get the 32-bit ARGB value of this ExtendedColors.
+        /// </summary>
         internal long Value
         {
             get
@@ -106,6 +138,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Converts this ExtendedColors structure to a human-readable string.
+        /// </summary>
         public string Name
         {
             get
@@ -131,6 +166,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the red component value of this ExtendedColors structure.
+        /// </summary>
         public byte R
         {
             get
@@ -139,6 +177,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the green component value of this ExtendedColors structure.
+        /// </summary>
         public byte G
         {
             get
@@ -147,7 +188,9 @@ namespace Ekstrand.Drawing
             }
         }
 
-
+        /// <summary>
+        /// Gets the blue component value of this ExtendedColors structure.
+        /// </summary>
         public byte B
         {
             get
@@ -156,6 +199,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the alpha component value of this ExtendedColors structure.
+        /// </summary>
         public byte A
         {
             get
@@ -164,6 +210,12 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Validates the byte value
+        /// </summary>
+        /// <param name="value">Integer value of the byte</param>
+        /// <param name="name">Name of the ARGB being validated</param>
+        /// <remarks>This validation if true returns otherwise throw argument exception.</remarks>
         private static void CheckByte(int value, string name)
         {
             if (value < 0 || value > 255)
@@ -172,10 +224,14 @@ namespace Ekstrand.Drawing
             }
         }
 
-        /// <include file='doc\EkstrandColorStyles.uex' path='docs/doc[@for="EkstrandColorStyles.MakeArgb"]/*' />
-        /// <devdoc>
-        ///     Encodes the four values into ARGB (32 bit) format.
-        /// </devdoc>
+        /// <summary>
+        /// Encodes the four values into ARGB (32 bit) format.
+        /// </summary>
+        /// <param name="alpha">The alpha value for the new ExtendedColors. Valid values are 0 through 255.</param>
+        /// <param name="red">The red component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <returns>The 32-bit ARGB value of this ExtendedColors.</returns>
         private static long MakeArgb(byte alpha, byte red, byte green, byte blue)
         {
             return (long)(unchecked((uint)(red << ARGBRedShift |
@@ -184,6 +240,11 @@ namespace Ekstrand.Drawing
                          alpha << ARGBAlphaShift))) & 0xffffffff;
         }
 
+        /// <summary>
+        /// Creates a ExtendedColors structure from the
+        /// </summary>
+        /// <param name="color">Enumeration of type KnownExtendedColors</param>
+        /// <returns>The ExtendedColors structure that this method creates based on given enumeration otherwise an empty ExtendedColors.</returns>
         public static ExtendedColors FromKnownColor(KnownExtendedColors color)
         {
             if (IsEnumValid(unchecked((int)color), (int)KnownExtendedColors.AbaloneShell, (int)KnownExtendedColors.ZurichWhite)) // end side
@@ -193,11 +254,23 @@ namespace Ekstrand.Drawing
             return new ExtendedColors(color);
         }
 
+        /// <summary>
+        /// Checks if given enumeration element integer value is in the defined boundary.
+        /// </summary>
+        /// <param name="value">Enumeration element integer value.</param>
+        /// <param name="min">Enumeration integer minimum value to defined the lower boundary.</param>
+        /// <param name="max">Enumeration integer maximum value to defined the upper boundary.</param>
+        /// <returns>Return true if given enumeration integer value is within defined boundaries otherwise false.</returns>
         private static bool IsEnumValid(int value, int min, int max)
         {
             return ((value >= min) && (value <= max));
         }
 
+        /// <summary>
+        /// Creates a ExtendedColors structure from the specified name of a predefined color.
+        /// </summary>
+        /// <param name="name">A string that is the name of a predefined color. Valid names are the same as the names of the elements of the KnownExtendedColors enumeration. </param>
+        /// <returns>The ExtendedColors that this method creates.</returns>
         public static ExtendedColors FromName(string name)
         {
             //try to get a known color first
@@ -211,6 +284,10 @@ namespace Ekstrand.Drawing
 
         }
 
+        /// <summary>
+        /// Gets the hue-saturation-brightness (HSB) brightness value for this ExtendedColors structure.
+        /// </summary>
+        /// <returns>The brightness of this ExtendedColors. The brightness ranges from 0.0 through 1.0, where 0.0 represents black and 1.0 represents white.</returns>
         public float GetBrightness()
         {
             float r = (float)R / 255.0f;
@@ -230,6 +307,10 @@ namespace Ekstrand.Drawing
             return (max + min) / 2;
         }
 
+        /// <summary>
+        /// Gets the hue-saturation-brightness (HSB) hue value, in degrees, for this ExtendedColors structure.
+        /// </summary>
+        /// <returns>The hue, in degrees, of this ExtendedColors. The hue is measured in degrees, ranging from 0.0 through 360.0, in HSB color space.</returns>
         public Single GetHue()
         {
             if (R == G && G == B)
@@ -274,6 +355,10 @@ namespace Ekstrand.Drawing
             return hue;
         }
 
+        /// <summary>
+        /// Gets the hue-saturation-brightness (HSB) saturation value for this ExtendedColors structure.
+        /// </summary>
+        /// <returns>The saturation of this ExtendedColors. The saturation ranges from 0.0 through 1.0, where 0.0 is grayscale and 1.0 is the most saturated.</returns>
         public float GetSaturation()
         {
             float r = (float)R / 255.0f;
@@ -310,16 +395,28 @@ namespace Ekstrand.Drawing
             return s;
         }
 
+        /// <summary>
+        /// Gets the 32-bit ARGB value of this ExtendedColors structure.
+        /// </summary>
+        /// <returns>The 32-bit ARGB value of this ExtendedColors.</returns>
         public int ToArgb()
         {
             return unchecked((int)Value);
         }
 
+        /// <summary>
+        /// Gets the KnownExtendedColors value of this Color structure.
+        /// </summary>
+        /// <returns>An element of the KnownColor enumeration, if the ExtendedColors is created from a predefined color by using either the FromName method or the FromKnownColor method; otherwise, 0.</returns>
         public KnownExtendedColors ToKnownColor()
         {
             return (KnownExtendedColors)m_KnownColor;
         }
 
+        /// <summary>
+        /// Converts this ExtendedColors structure to a human-readable string.
+        /// </summary>
+        /// <returns>A string that is the name of this ExtendedColors, if the ExtendedColors is created from a predefined color by using either the FromName method or the FromKnownColor method; otherwise, a string that consists of the ARGB component names and their values.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(32);
@@ -356,16 +453,24 @@ namespace Ekstrand.Drawing
             return sb.ToString();
         }
 
-        public static ExtendedColors ParseToColor(int argb)
-        {
-            return KnownExtendedColorsTable.ArgbToKnownColor(argb);
-        }
-
+        /// <summary>
+        /// Creates a Color structure from a 32-bit ARGB value.
+        /// </summary>
+        /// <param name="argb">A value specifying the 32-bit ARGB value. </param>
+        /// <returns>The ExtendedColors structure that this method creates.</returns>
         public static ExtendedColors FromArgb(int argb)
         {
             return new ExtendedColors((long)argb & 0xffffffff, StateARGBValueValid, null, (KnownExtendedColors)0);
         }
 
+        /// <summary>
+        /// Creates a ExtendedColors structure from the four ARGB component(alpha, red, green, and blue) values.Although this method allows a 32-bit value to be passed for each component, the value of each component is limited to 8 bits.
+        /// </summary>
+        /// <param name="alpha">The alpha value for the new ExtendedColors. Valid values are 0 through 255.</param>
+        /// <param name="red">The red component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <returns>The Color that this method creates.</returns>
         public static ExtendedColors FromArgb(int alpha, int red, int green, int blue)
         {
             CheckByte(alpha, "alpha");
@@ -375,6 +480,12 @@ namespace Ekstrand.Drawing
             return new ExtendedColors(MakeArgb((byte)alpha, (byte)red, (byte)green, (byte)blue), StateARGBValueValid, null, (KnownExtendedColors)0);
         }
 
+        /// <summary>
+        /// Creates a ExtendedColors structure from the specified Color structure, but with the new specified alpha value. Although this method allows a 32-bit value to be passed for the alpha value, the value is limited to 8 bits.
+        /// </summary>
+        /// <param name="alpha">The alpha value for the new Color. Valid values are 0 through 255.</param>
+        /// <param name="baseColor">The ExtendedColors from which to create the new ExtendedColors. </param>
+        /// <returns>The Color that this method creates.</returns>
         public static ExtendedColors FromArgb(int alpha, ExtendedColors baseColor)
         {
             CheckByte(alpha, "alpha");
@@ -382,11 +493,24 @@ namespace Ekstrand.Drawing
             return new ExtendedColors(MakeArgb(unchecked((byte)alpha), baseColor.R, baseColor.G, baseColor.B), StateARGBValueValid, null, (KnownExtendedColors)0);
         }
 
+        /// <summary>
+        /// Creates a ExtendedColors structure from the specified 8-bit color values (red, green, and blue). The alpha value is implicitly 255 (fully opaque). Although this method allows a 32-bit value to be passed for each color component, the value of each component is limited to 8 bits.
+        /// </summary>
+        /// <param name="red">The red component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <returns>The Color that this method creates.</returns>
         public static ExtendedColors FromArgb(int red, int green, int blue)
         {
             return ExtendedColors.FromArgb(255, red, green, blue);
         }
 
+        /// <summary>
+        /// Tests whether two specified ExtendedColors structures are equivalent.
+        /// </summary>
+        /// <param name="left">The ExtendedColors structure that is to the left of the equality operator. </param>
+        /// <param name="right">The ExtendedColors structure that is to the right of the equality operator. </param>
+        /// <returns>true if the two ExtendedColors structures are equal; otherwise, false.</returns>
         public static bool operator ==(ExtendedColors left, ExtendedColors right)
         {
             if (left.m_Value == right.m_Value
@@ -410,11 +534,22 @@ namespace Ekstrand.Drawing
             return false;
         }
 
+        /// <summary>
+        /// Tests whether two specified ExtendedColors structures are different.
+        /// </summary>
+        /// <param name="left">The ExtendedColors structure that is to the left of the inequality operator. </param>
+        /// <param name="right">The ExtendedColors structure that is to the right of the inequality operator. </param>
+        /// <returns>true if the two ExtendedColors structures are different; otherwise, false.</returns>
         public static bool operator !=(ExtendedColors left, ExtendedColors right)
         {
             return !(left == right);
         }
 
+        /// <summary>
+        /// Tests whether the specified object is a ExtendedColors structure and is equivalent to this ExtendedColors structure.
+        /// </summary>
+        /// <param name="obj">The object to test. </param>
+        /// <returns>true if obj is a Color structure equivalent to this ExtendedColors structure; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             if (obj is ExtendedColors)
@@ -441,6 +576,10 @@ namespace Ekstrand.Drawing
             return false;
         }
 
+        /// <summary>
+        /// Returns a hash code for this ExtendedColors structure.
+        /// </summary>
+        /// <returns>An integer value that specifies the hash code for this Color.</returns>
         public override int GetHashCode()
         {
             return unchecked(m_Value.GetHashCode() ^ m_State.GetHashCode() ^ m_KnownColor.GetHashCode());

@@ -7,6 +7,9 @@ using System.Drawing;
 
 namespace Ekstrand.Drawing
 {
+    /// <summary>
+    /// Table of Known Extended Colors
+    /// </summary>
     public static class KnownExtendedColorsTable
     {
         private static int[] colorTable;
@@ -24,6 +27,11 @@ namespace Ekstrand.Drawing
         private const int Win32GreenShift = 8;
         private const int Win32BlueShift = 16;
 
+        /// <summary>
+        /// ExtendedColors from given 32-bit ARGB value.
+        /// </summary>
+        /// <param name="targetARGB">32-bit ARGB color value</param>
+        /// <returns>Return a ExtendedColors structure from the known color table otherwise returns an empty ExtendedColors structure.</returns>
         public static ExtendedColors ArgbToKnownColor(int targetARGB)
         {
             EnsureColorTable();
@@ -39,7 +47,12 @@ namespace Ekstrand.Drawing
 
             return ExtendedColors.FromArgb(targetARGB);
         }
-        
+
+        /// <summary>
+        /// Known color table lookup from 32-bit ARGB value to string and enumeration element value in a tuple.
+        /// </summary>
+        /// <param name="targetARGB">32-bit ARGB value</param>
+        /// <returns>Returns a tuple with string and enumeration element of the given 32-bit ARGB value otherwise a tuple with empty string with first valid enumeration element. </returns>
         public static Tuple<string,KnownExtendedColors> IdentifyColor(int targetARGB)
         {
             EnsureColorTable();
@@ -59,6 +72,9 @@ namespace Ekstrand.Drawing
             return item;
         }
 
+        /// <summary>
+        /// Creates and populate the extended colors lookup table.
+        /// </summary>
         private static void EnsureColorTable()
         {
             // no need to lock... worse case is a double create of the table...
@@ -69,6 +85,9 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Creates and populate the extended colors name lookup table.
+        /// </summary>
         private static void EnsureColorNameTable()
         {
             // no need to lock... worse case is a double create of the table...
@@ -79,6 +98,11 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        /// Returns 32-bit ARGB value for the given KnownExtendedColors element.
+        /// </summary>
+        /// <param name="color">Enumeration element of type KnownExtendedColors.</param>
+        /// <returns>Returns 32-bit ARGB value.</returns>
         public static int KnownColorToArgb(KnownExtendedColors color)
         {
             EnsureColorTable();
@@ -92,6 +116,11 @@ namespace Ekstrand.Drawing
             }
         }
 
+        /// <summary>
+        ///  Returns string with ExtendedColors name.
+        /// </summary>
+        /// <param name="color">Enumeration element of type KnownExtendedColors.</param>
+        /// <returns>String name of given KnownExtendedColors element otherwise empty string.</returns>
         public static string KnownColorToName(KnownExtendedColors color)
         {
             EnsureColorNameTable();
@@ -101,17 +130,27 @@ namespace Ekstrand.Drawing
             }
             else
             {
-                return null;
+                return string.Empty;
             }
         }
 
+        /// <summary>
+        /// Encoding of ARGB into 32-bit integer value
+        /// </summary>
+        /// <param name="alpha">The alpha value for the new ExtendedColors. Valid values are 0 through 255.</param>
+        /// <param name="red">The red component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for the new ExtendedColors. Valid values are 0 through 255. </param>
+        /// <returns>The 32-bit integer value of the ARGB color.</returns>
         private static int Encode(int alpha, int red, int green, int blue)
         {
             return red << RedShift | green << GreenShift | blue << BlueShift | alpha << AlphaShift;
         }
 
         #region Color Table
-
+        /// <summary>
+        /// Initialize the color table with defined ARGB
+        /// </summary>
         private static void InitColorTable()
         {
             int[] values = new int[(unchecked((int)KnownExtendedColors.ZurichWhite)) + 1];
@@ -3606,6 +3645,9 @@ namespace Ekstrand.Drawing
             colorTable = values;
         }
 
+        /// <summary>
+        /// Initialize the table for mapping KnownExtendedColors elements to its string name.
+        /// </summary>
         private static void InitColorNameTable()
         {
             string[] values = new string[((int)KnownExtendedColors.ZurichWhite)+ 1];

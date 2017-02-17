@@ -6,8 +6,11 @@ using System.Drawing;
 namespace Ekstrand.Drawing
 {
     /// <summary>
-    /// Source from Rich Newman http://richnewman.wordpress.com/hslcolor-class/
+    /// Color in the hue, saturation, and lightness (HSL) color space.
     /// </summary>
+    /// <remarks>
+    /// Source code from Rich Newman at: http://richnewman.wordpress.com/hslcolor-class/
+    /// </remarks>
     public class HSLColor
     {
         // Private data members below are on scale 0-1
@@ -18,16 +21,65 @@ namespace Ekstrand.Drawing
 
         private const double scale = 240.0;
 
+        /// <summary>
+        /// Color in the Hue, saturation, and lightness color space.
+        /// </summary>
+        public HSLColor() { }
+
+        /// <summary>
+        /// Color in the Hue, saturation, and lightness color space.
+        /// </summary>
+        /// <param name="color">Color to be converted into HSL color space.</param>
+        public HSLColor(Color color)
+        {
+            FromRGB(color.R, color.G, color.B);
+        }
+
+        /// <summary>
+        /// Color in the Hue, saturation, and lightness color space.
+        /// </summary>
+        /// <param name="red">The red component value from an 32-bit color value. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value from an 32-bit color value. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for from an 32-bit color value. Valid values are 0 through 255. </param>
+        public HSLColor(int red, int green, int blue)
+        {
+            FromRGB(red, green, blue);
+        }
+
+        /// <summary>
+        /// Color in the Hue, saturation, and lightness color space.
+        /// </summary>
+        /// <param name="hue">The hue component value in the HSL color space.</param>
+        /// <param name="saturation">The saturation value in the HLS color space.</param>
+        /// <param name="luminosity">The luminosity value in the HLS color space.</param>
+        public HSLColor(double hue, double saturation, double luminosity)
+        {
+            this.Hue = hue;
+            this.Saturation = saturation;
+            this.Luminosity = luminosity;
+        }
+
+        /// <summary>
+        /// The hue component value in the HSL color space.
+        /// </summary>
         public double Hue
         {
             get { return hue * scale; }
             set { hue = CheckRange(value / scale); }
         }
+
+        /// <summary>
+        /// The saturation value in the HLS color space.
+        /// </summary>
         public double Saturation
         {
             get { return saturation * scale; }
             set { saturation = CheckRange(value / scale); }
         }
+
+        /// <summary>
+        /// The luminosity value in the HLS color space.
+        /// </summary>
         public double Luminosity
         {
             get { return luminosity * scale; }
@@ -43,11 +95,19 @@ namespace Ekstrand.Drawing
             return value;
         }
 
+        /// <summary>
+        /// Return a string presentation of this object.
+        /// </summary>
+        /// <returns>A string presentation of this object.</returns>
         public override string ToString()
         {
             return String.Format("H: {0:#0.##} S: {1:#0.##} L: {2:#0.##}", Hue, Saturation, Luminosity);
         }
 
+        /// <summary>
+        /// Convert HSL to RGB in string form.
+        /// </summary>
+        /// <returns>Return the HSL in string formatted in RGB</returns>
         public string ToRGBString()
         {
             Color color = (Color)this;
@@ -55,7 +115,11 @@ namespace Ekstrand.Drawing
         }
 
         #region Casts to/from System.Drawing.Color
-
+       
+        /// <summary>
+        /// Implicit operation from HSL color space to RGB color space.
+        /// </summary>
+        /// <param name="hslColor">A HSL object.</param>
         public static implicit operator Color(HSLColor hslColor)
         {
             double r = 0, g = 0, b = 0;
@@ -88,6 +152,7 @@ namespace Ekstrand.Drawing
             else
                 return temp1;
         }
+
         private static double MoveIntoRange(double temp3)
         {
             if (temp3 < 0.0)
@@ -96,6 +161,7 @@ namespace Ekstrand.Drawing
                 temp3 -= 1.0;
             return temp3;
         }
+
         private static double GetTemp2(HSLColor hslColor)
         {
             double temp2;
@@ -106,6 +172,10 @@ namespace Ekstrand.Drawing
             return temp2;
         }
 
+        /// <summary>
+        /// Implicit operator from RGB color space to HSL color space.
+        /// </summary>
+        /// <param name="color">Color structure</param>
         public static implicit operator HSLColor(Color color)
         {
             HSLColor hslColor = new HSLColor();
@@ -114,31 +184,21 @@ namespace Ekstrand.Drawing
             hslColor.saturation = color.GetSaturation();
             return hslColor;
         }
+
         #endregion
 
-        public void SetRGB(int red, int green, int blue)
+        /// <summary>
+        /// Set the HSL color space from a RGB color space.
+        /// </summary>
+        /// <param name="red">The red component value from an 32-bit color value. Valid values are 0 through 255. </param>
+        /// <param name="green">The green component value from an 32-bit color value. Valid values are 0 through 255. </param>
+        /// <param name="blue">The blue component value for from an 32-bit color value. Valid values are 0 through 255. </param>
+        public void FromRGB(int red, int green, int blue)
         {
             HSLColor hslColor = (HSLColor)Color.FromArgb(red, green, blue);
             this.hue = hslColor.hue;
             this.saturation = hslColor.saturation;
             this.luminosity = hslColor.luminosity;
-        }
-
-        public HSLColor() { }
-        public HSLColor(Color color)
-        {
-            SetRGB(color.R, color.G, color.B);
-        }
-        public HSLColor(int red, int green, int blue)
-        {
-            SetRGB(red, green, blue);
-        }
-        public HSLColor(double hue, double saturation, double luminosity)
-        {
-            this.Hue = hue;
-            this.Saturation = saturation;
-            this.Luminosity = luminosity;
-        }
-
+        }        
     }
 }

@@ -194,12 +194,12 @@ namespace ExtenedColorsTester
             Assert.AreEqual("ExtendedColors [MareaBaja]", ec.ToString());
         }
 
-        [Test]
-        public void ParseToColorTest()
-        {
-            ExtendedColors ec = ExtendedColors.ParseToColor(unchecked((int)0xFF2E5464));          
-            Assert.AreEqual(unchecked((int)0xFF2E5464), ec.ToArgb());
-        }
+        //[Test]
+        //public void ParseToColorTest()
+        //{
+        //    ExtendedColors ec = ExtendedColors.ParseToColor(unchecked((int)0xFF2E5464));          
+        //    Assert.AreEqual(unchecked((int)0xFF2E5464), ec.ToArgb());
+        //}
 
         [Test]
         public void FromArgbATest()

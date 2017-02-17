@@ -2,6 +2,10 @@
 
 namespace Ekstrand.Drawing
 {
+    /// <summary>
+    /// Enumeration of defined known colors
+    /// </summary>
+    #pragma warning disable CS1591
     public enum KnownExtendedColors
     {
         // This enum is order dependent!!!
