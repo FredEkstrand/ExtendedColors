@@ -8,5 +8,4 @@ So, you want more named colors to choose from. How about 3,000 named colors to c
 <div id="statcounter_image" style="display:inline;"><a
 title="" href="http://statcounter.com/"
 class="statcounter"><img
-src="//c.statcounter.com/11263254/0/f6178ca5/1/" alt="web
-analytics" style="border:none;" /></a></div>
+src="//c.statcounter.com/11263254/0/f6178ca5/1/" alt="" style="border:none;" /></a></div>
