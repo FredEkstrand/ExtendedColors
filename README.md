@@ -15,7 +15,7 @@ The ExtendedColors structure have the following features:
 
 ## Download
 The souce code and provided DLL is written in C# and targeted for the .Net Framework 4.0 and later.
-You can download the DLL [here](http://fredekstrand.github.io/EnumUtilities).
+You can download the DLL [here](#).
 
 ## Getting started
 Once downloaded add a reference to the dll in your Visual Studio project.
