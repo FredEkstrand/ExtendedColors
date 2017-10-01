@@ -29,3 +29,5 @@ C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\Mono.Ce
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\ExtendedColors.pdb
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\nunit.framework.xml
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\ExtendedColors.xml
+C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Debug\Mono.Cecil.Mdb.dll

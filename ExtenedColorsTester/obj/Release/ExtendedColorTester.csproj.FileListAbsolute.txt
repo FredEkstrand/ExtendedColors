@@ -14,3 +14,5 @@ C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Release\nunit
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\obj\Release\ExtendedColorTester.csprojResolveAssemblyReference.cache
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\obj\Release\ExtenedColorsTester.dll
 C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\obj\Release\ExtenedColorsTester.pdb
+C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Release\Mono.Cecil.Pdb.dll
+C:\Users\frede\Documents\GitHub\ColorChart\ExtenedColorsTester\bin\Release\Mono.Cecil.Mdb.dll

@@ -43,6 +43,7 @@ namespace ExtenedColorsTester
         #region Implicit Operators
 
         [Test]
+        [Category("Implicit Operators")]
         public void ImplicitOperatorExtendedColors()
         {
             Color c = Color.FromArgb(unchecked((int)0xFFA1A187));
@@ -52,6 +53,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Implicit Operators")]
         public void ImplicitOperatorColors()
         {
             Color c = Color.FromArgb(unchecked((int)0xFF996244));
@@ -65,6 +67,7 @@ namespace ExtenedColorsTester
         #region Properties
 
         [Test]
+        [Category("Properties")]
         public void IsEmptyTest()
         {
             ExtendedColors ec = new ExtendedColors();
@@ -75,6 +78,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void IsNamedColorTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("VodoYellow");
@@ -85,6 +89,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void IsKnownColorTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -95,6 +100,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void NameTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -102,6 +108,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void RedTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -109,6 +116,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void GRNTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -116,6 +124,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void BLUTest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -123,6 +132,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Properties")]
         public void ALPATest()
         {
             ExtendedColors ec = ExtendedColors.FromName("MareaBaja"); 
@@ -134,6 +144,7 @@ namespace ExtenedColorsTester
         #region Public Methods
 
         [Test]
+        [Category("Public Methods")]
         public void FromKnownColorEnumTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja); 
@@ -141,6 +152,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void FromNameEnumTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja); 
@@ -148,6 +160,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void GetBrightnessTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja); 
@@ -156,6 +169,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void GetHueTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja); 
@@ -164,6 +178,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void GetSaturationTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja); 
@@ -173,6 +188,7 @@ namespace ExtenedColorsTester
 
 
         [Test]
+        [Category("Public Methods")]
         public void ToArgbTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja);           
@@ -181,6 +197,7 @@ namespace ExtenedColorsTester
 
 
         [Test]
+        [Category("Public Methods")]
         public void ToKnownColorTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja);          
@@ -188,6 +205,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void ToStringTest()
         {
             ExtendedColors ec = ExtendedColors.FromKnownColor(KnownExtendedColors.MareaBaja);           
@@ -202,6 +220,7 @@ namespace ExtenedColorsTester
         //}
 
         [Test]
+        [Category("Public Methods")]
         public void FromArgbATest()
         {
             ExtendedColors ec = ExtendedColors.FromArgb(unchecked((int)0xFF2E5464));          
@@ -209,6 +228,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void FromArgbBTest()
         {
             ExtendedColors ec = ExtendedColors.FromArgb(46,84,100);            
@@ -216,6 +236,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void FromArgbCTest()
         {
             ExtendedColors ec = ExtendedColors.FromArgb(255,46, 84, 100);           
@@ -223,6 +244,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void FromArgbDTest()
         {
             ExtendedColors ec = ExtendedColors.FromArgb(90, ExtendedColors.MareaBaja);           
@@ -231,6 +253,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void EqualEqualTest()
         {
             ExtendedColors ec = ExtendedColors.MareaBaja;  
@@ -243,6 +266,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void NotEqualTest()
         {
             ExtendedColors ec = ExtendedColors.MareaBaja;   
@@ -255,6 +279,7 @@ namespace ExtenedColorsTester
         }
 
         [Test]
+        [Category("Public Methods")]
         public void EqualsTest()
         {
             ExtendedColors ec = ExtendedColors.MareaBaja;   
