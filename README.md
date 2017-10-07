@@ -29,7 +29,7 @@ Form form = new Form();
 form.BackColor = ExtendedColors.MareaBaja;
 ```
 ### Documentation
-Class documentation can be found [here](#). 
+Class documentation can be found [here](http://fredekstrand.github.io/ColorChart). 
 
 ## History
  1.0.0 Initial release into the wild.
