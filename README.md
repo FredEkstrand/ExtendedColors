@@ -35,7 +35,7 @@ form.BackColor = ExtendedColors.MareaBaja;
 Set .Net color structure from extended colors structure.
 ```csharp
 ExtendedColors exColors = ExtendedColors.BarnDoor;
-Color aColor = Color.FromArgb(exColors.ToArgb());
+Color aColor = exColors;
 ```
 Set ExtendedColors structure from known ExtendedColors name.
 ```csharp
