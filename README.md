@@ -1,6 +1,9 @@
-![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/CodeIcon.png ) 
 
-![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![Licence MIT](https://img.shields.io/badge/Licence-MIT-blue.svg) [![codecov](https://codecov.io/gh/FredEkstrand/ColorChart/branch/master/graph/badge.svg)](https://codecov.io/gh/FredEkstrand/ColorChart)
+# Extended Colors
+
+![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![Licence MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
+
+![Project image](https://github.com/FredEkstrand/ImageFiles/raw/master/ColorChips/ProjectImage.PNG)
 
 # Overview
 The ExtendedColors project represents an ARGB (alpha, red, green, blue) color of an additional 3,000+ defined named colors not found in the .Net Framework color structure.
@@ -13,35 +16,48 @@ The ExtendedColors structure have the following features:
 * Null or empty color.
 * Creates a Color structure from the specified name of a predefined color.
 
-## Download
-The souce code and provided DLL is written in C# and targeted for the .Net Framework 4.0 and later.
-You can download the DLL [here](#).
+# Getting started
+The souce code is written in C# and targeted for the .Net Framework 4.0 and later. Download the entire project and compile.
 
-## Getting started
-Once downloaded add a reference to the dll in your Visual Studio project.
+# Usage
+Once you have compiled the project reference the dll in your Visual Studio project.
 Then in your code file add the following to the collection of using statement.
+
 ```csharp
 using Ekstrand.Drawing;
 ```
-## Code Example
+##### Some basic examples
+Set form background color to MareaBaja.
 ```csharp
 Form form = new Form();
 form.BackColor = ExtendedColors.MareaBaja;
 ```
-### Documentation
-Class documentation can be found [here](http://fredekstrand.github.io/ColorChart). 
+Set .Net color structure from extended colors structure.
+```csharp
+Color aColor;
+ExtendedColors exColors = ExtendedColors.BarnDoor;
+aColor = exColors;
+```
+Set ExtendedColors structure from known ExtendedColors name.
+```csharp
+ExtendedColors exColor = ExtendedColors.FromKnownColor(KnownExtendedColors.PlymouthBlue);
+```
 
-## History
+# Code Documentation
+MSDN-style code documentation can be found [here](http://fredekstrand.github.io/ColorChart).
+
+# History
  1.0.0 Initial release into the wild.
 
-## Contributing
+# Contributing
 
 If you'd like to contribute, please fork the repository and use a feature
 branch. Pull requests are always welcome.
 
-## Contact
-Fred Ekstrand 
+# Contact
+Fred Ekstrand
 email: fredekstrandgithub@gmail.com
-## Licensing
+
+# Licensing
 
 The code in this project is licensed under MIT license.
