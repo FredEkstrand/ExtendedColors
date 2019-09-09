@@ -45,7 +45,7 @@ ExtendedColors exColor = ExtendedColors.FromKnownColor(KnownExtendedColors.Plymo
 ```
 
 # Code Documentation
-MSDN-style code documentation can be found [here](http://fredekstrand.github.io/ColorChart).
+MSDN-style code documentation can be found [here](http://fredekstrand.github.io/ClassDocColorChart).
 
 # History
  1.0.0 Initial release into the wild.
